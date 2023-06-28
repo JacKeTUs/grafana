@@ -381,7 +381,9 @@ func TestIntegrationDashboardDataAccess(t *testing.T) {
 		setup()
 		query := dashboards.FindPersistedDashboardsQuery{
 			OrgId: 1,
-			Limit: 1,
+			// limit used to be applied on dashboard rows only
+			// but no it is applied to the dashboards rows * dashboard tags
+			Limit: 2,
 			Page:  2,
 			SignedInUser: &user.SignedInUser{
 				OrgID:   1,
